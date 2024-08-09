@@ -11,8 +11,6 @@ phases:
       - docker build -t techno .
       - echo Tagging the Docker image...
       - docker tag techno:latest 170842545734.dkr.ecr.us-east-1.amazonaws.com/techno:latest
-      - echo Saving the Docker image as a tarball...
-      - docker save -o techno-latest.tar techno:latest
   post_build:
     commands:
       - echo Pushing the Docker image to ECR...
@@ -21,7 +19,4 @@ phases:
 
 artifacts:
   files: 
-    - Dockerfile
-    - techno-latest.tar
-  discard-paths: no
-  base-directory: .  # Specify the base directory if Dockerfile is not in the root directory
+    - '**/*'
